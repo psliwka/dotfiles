@@ -1,0 +1,3 @@
+# Debian-specific entrypoint for X sessions
+
+. ~/.profile

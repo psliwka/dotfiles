@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Wrapper around pip to install packages in user's home directory by default.
+# PIP_USER can not be simply put in global env, since this would bork any pip
+# install inside virtualenvs. See https://github.com/pypa/pip/issues/4141 for
+# more details.
+
+ALIASED_COMMAND="$(basename "$0")"  # can be `pip` or `pip3`
+
+ORIGINAL_COMMAND="$(which -a "$ALIASED_COMMAND" | tail -n+2 | head -n1)"
+if [ -z "$ORIGINAL_COMMAND" ]; then
+    echo "$ALIASED_COMMAND: original command not found" 2>&1
+    exit 127
+fi
+
+export PIP_USER=True
+exec "$ORIGINAL_COMMAND" "$@"

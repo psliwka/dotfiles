@@ -1,0 +1,8 @@
+# Kill GPG agent every time screen is locked. This wipes private keys from
+# memory, and locks OpenPGP smartcards. Also, it fixes an issue I've experienced
+# with agent freezing after suspend/resume cycle with YubiKey inserted.
+[Desktop Entry]
+Name=Kill GPG Agent on screen lock
+TryExec=xss-lock
+Exec=xss-lock -- gpgconf --kill gpg-agent
+Type=Application

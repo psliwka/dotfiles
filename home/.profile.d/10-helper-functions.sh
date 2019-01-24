@@ -1,7 +1,6 @@
 is_installed()
 {
     command -v "$1" > /dev/null
-    return $?
 }
 
 add_to_path()

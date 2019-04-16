@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Clear `no_log` attribute from all Ansible tasks. Useful for debugging.
+# TODO: make this reversible without resorting to `git checkout` and stuff
+
+find -name '*.yml' -print0 | xargs -0 sed -i '/no_log:/s/[^ ]/# DISABLED FOR DEBUGGING: &/'

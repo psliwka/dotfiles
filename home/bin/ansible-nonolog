@@ -1,6 +1,16 @@
 #!/bin/sh
 #
 # Clear `no_log` attribute from all Ansible tasks. Useful for debugging.
-# TODO: make this reversible without resorting to `git checkout` and stuff
+# Run with `-r` param to revert changes.
 
-find -name '*.yml' -print0 | xargs -0 sed -i '/no_log:/s/[^ ]/# DISABLED FOR DEBUGGING: &/'
+DIRECTIVE_TO_DISABLE='no_log:'
+DISABLING_COMMENT='# DISABLED FOR DEBUGGING: '
+DISABLING_SED_SCRIPT="/${DIRECTIVE_TO_DISABLE}/s/[^ ]/${DISABLING_COMMENT}&/"
+ENABLING_SED_SCRIPT="s/${DISABLING_COMMENT}${DIRECTIVE_TO_DISABLE}/${DIRECTIVE_TO_DISABLE}/"
+
+case "$1" in
+  "-r") sed_script="$ENABLING_SED_SCRIPT" ;;
+  *) sed_script="$DISABLING_SED_SCRIPT" ;;
+esac
+
+find -name '*.yml' -print0 | xargs -0 sed -i "$sed_script"

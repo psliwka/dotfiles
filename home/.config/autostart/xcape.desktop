@@ -1,0 +1,7 @@
+# Useful for vimmers, especially in conjunction with `ctrl:nocaps` XKB option.
+# Requires https://github.com/alols/xcape
+[Desktop Entry]
+Name=Make left control behave like escape if pressed and released alone
+TryExec=xcape
+Exec=xcape
+Type=Application

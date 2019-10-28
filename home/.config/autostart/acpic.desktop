@@ -1,0 +1,9 @@
+# Launch acpic to handle hardware volume buttons in awesomewm sessions
+# TODO: autokill it when session ends
+[Desktop Entry]
+Name=acpic
+Comment=acpid event handler
+TryExec=acpic
+Exec=acpic
+Type=Application
+OnlyShowIn=awesome;

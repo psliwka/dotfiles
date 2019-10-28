@@ -1,3 +1,6 @@
 [submodule "vendor/fisher"]
 	path = vendor/fisher
 	url = https://github.com/jorgebucaran/fisher
+[submodule "vendor/acpic"]
+	path = vendor/acpic
+	url = https://github.com/psliwka/acpic

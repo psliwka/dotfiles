@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Run given command in background, and kill it once current X session ends.
+
+if [ -z "$@" ]; then
+    echo "usage: $0 COMMAND" >&2
+    exit 1
+fi
+
+"$@" &
+inner_command_pid=$!
+echo "$0: \"$@\" started, PID: $inner_command_pid" >&2
+
+xprop -spy -root > /dev/null
+
+echo "$0: X died, killing \"$@\"" >&2
+kill $inner_command_pid

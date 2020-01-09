@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Print all Ansible groups along with their members as JSON to stdout
+
+DUMPFILE=$(mktemp)
+ansible localhost -m copy -a "content={{ groups }} dest=$DUMPFILE" > /dev/null
+jq . $DUMPFILE

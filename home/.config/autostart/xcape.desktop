@@ -1,7 +1,7 @@
-# Useful for vimmers, especially in conjunction with `ctrl:nocaps` XKB option.
-# Requires https://github.com/alols/xcape
+# Useful for vimmers, especially in conjunction with `caps:ctrl_modifier` XKB
+# option. Requires https://github.com/alols/xcape
 [Desktop Entry]
-Name=Make left control behave like escape if pressed and released alone
+Name=Make capslock behave like escape if pressed and released alone
 TryExec=xcape
-Exec=xcape
+Exec=xcape -e Caps_Lock=Escape
 Type=Application

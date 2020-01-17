@@ -8,6 +8,8 @@ case "$(uname)" in
         ;;
     Darwin)
         # Does not exist on Mac by default, created by `$ brew install openssl`
+        # Remember to run `/usr/local/opt/openssl/bin/c_rehash` after you drop
+        # new certificates there.
         export REQUESTS_CA_BUNDLE=/usr/local/etc/openssl/certs
         ;;
 esac

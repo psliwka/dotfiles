@@ -7,6 +7,15 @@ worth publishing.
 Tested on Debian Sid and Mac OS X. Synchronized using
 [homeshick](https://github.com/andsens/homeshick).
 
+How to quickly infect a new machine
+-----------------------------------
+
+```sh
+git clone https://github.com/andsens/homeshick.git ~/.homesick/repos/homeshick
+~/.homesick/repos/homeshick/bin/homeshick clone psliwka/dotfiles
+exec bash -l
+```
+
 License
 -------
 

@@ -1,6 +1,3 @@
 function fish_greeting
-    # Requires https://github.com/Jomik/fish-gruvbox
-    if functions --query theme_gruvbox
-        theme_gruvbox dark
-    end
+    # Intentionally left empty to override Fish built-in greeting
 end

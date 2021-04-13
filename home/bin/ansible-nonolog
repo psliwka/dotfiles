@@ -13,4 +13,13 @@ case "$1" in
   *) sed_script="$DISABLING_SED_SCRIPT" ;;
 esac
 
-find -name '*.yml' -print0 | xargs -0 sed -i "$sed_script"
+case "$(uname)" in
+  Darwin)
+    SED_BINARY=gsed
+    ;;
+  *)
+    SED_BINARY=sed
+    ;;
+esac
+
+find . -name '*.yml' -print0 | xargs -0 "$SED_BINARY" -i "$sed_script"

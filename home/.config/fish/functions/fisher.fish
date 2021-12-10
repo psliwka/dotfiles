@@ -1,1 +1,1 @@
-../../../../vendor/fisher/fisher.fish
+../../../../vendor/fisher/functions/fisher.fish

@@ -14,6 +14,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       }
     }
   end}
+  use 'psliwka/vim-redact-pass'
 
   -- LSP integration
   use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip' }, config = function()
@@ -61,7 +62,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       }
     end
   end}
-  use 'psliwka/vim-redact-pass'
 
   -- Additional features
   use 'tpope/vim-repeat'
@@ -96,7 +96,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   end}
   use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
   use 'tpope/vim-unimpaired'
-  use '~/termcolors.nvim'
+  use 'psliwka/termcolors.nvim'
 
   -- Appearance
   use {'NTBBloodbath/doom-one.nvim', config = function()
@@ -137,7 +137,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     require('lualine').setup{}
   end}
   use {'unblevable/quick-scope', config = [[ vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'} ]]}
-  -- use 'tversteeg/registers.nvim'
   use {'norcalli/nvim-colorizer.lua', config = function()
     require('colorizer').setup({'*'}, { names = false; rgb_fn = true; })
   end}

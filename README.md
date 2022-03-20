@@ -4,7 +4,8 @@ My public dotfiles
 This repository holds some of my dotfiles, which I deemed useful enough to be
 worth publishing.
 
-Tested on Debian Sid and Mac OS X. Synchronized using
+Tested on Debian Sid, Mac OS X, and partially on
+[Termux](https://termux.com/). Synchronized using
 [homeshick](https://github.com/andsens/homeshick).
 
 How to quickly infect a new machine

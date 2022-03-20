@@ -1,0 +1,38 @@
+# Identity
+[user]
+	name = Piotr Śliwka
+	email = contact@psliwka.info
+	signingkey = 0355A06EF2482BD8F5D5656F55CBB335270DBF50
+
+# Better defaults
+[fetch]
+	prune = true
+[pull]
+	ff = only
+[push]
+	default = current
+	followtags = true
+[rebase]
+	autosquash = true
+	stat = true
+[commit]
+	gpgsign = true
+	verbose = true
+
+# Lazy shortcuts
+[alias]
+	s = status
+	a = add
+	d = diff
+	ds = diff --staged
+	pl = pull
+	pr = pull --rebase
+	ph = push
+
+# Easy way of retrying `git commit` which failed e.g. due to missing smartcard for signing
+[alias]
+	retry-commit = !git commit --edit --file="$(git rev-parse --git-path COMMIT_EDITMSG)"
+
+# Optional workplace email override
+[include]
+	path = work-config

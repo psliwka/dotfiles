@@ -15,6 +15,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     }
   end}
   use 'psliwka/vim-redact-pass'
+  use 'jjo/vim-cue'
 
   -- LSP integration
   use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip' }, config = function()

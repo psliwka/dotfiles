@@ -27,6 +27,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
           vim.fn["vsnip#anonymous"](args.body)
         end,
       },
+      mapping = cmp.mapping.preset.insert(),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'vsnip' },

@@ -18,9 +18,10 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'jjo/vim-cue'
 
   -- LSP integration
-  use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip' }, config = function()
+  use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim' }, config = function()
     local nvim_lsp = require('lspconfig')
     local cmp = require('cmp')
+    local lspkind = require('lspkind')
       cmp.setup({
       snippet = {
         expand = function(args)
@@ -32,7 +33,12 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
         { name = 'buffer' },
-      })
+      }),
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = 'symbol_text',
+        })
+      }
     })
 
     local on_attach = function(client, bufnr)

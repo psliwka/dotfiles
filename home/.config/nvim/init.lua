@@ -126,6 +126,16 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   -- Situational awareness enhancements
   use {'lewis6991/gitsigns.nvim', config = function()
       require('gitsigns').setup{
+        preview_config = {
+          border = 'rounded',
+        },
+        current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 1000/3,
+        },
+        signs = {
+          changedelete = {text = '╹▁'},
+        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 

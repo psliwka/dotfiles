@@ -18,7 +18,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'jjo/vim-cue'
 
   -- LSP integration
-  use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim' }, config = function()
+  use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim', 'f3fora/cmp-spell' }, config = function()
     local nvim_lsp = require('lspconfig')
     local cmp = require('cmp')
     local lspkind = require('lspkind')
@@ -33,6 +33,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
         { name = 'buffer' },
+        { name = 'spell' },
       }),
       formatting = {
         format = lspkind.cmp_format({

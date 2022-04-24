@@ -198,7 +198,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use {'norcalli/nvim-colorizer.lua', config = function()
     require('colorizer').setup({'*'}, { names = false; rgb_fn = true; })
   end}
-  use {'~/vim-dirtytalk', run = ':DirtytalkUpdate', config = 'vim.cmd[[set spelllang=en,programming]]'}
+  use {'psliwka/vim-dirtytalk', run = ':DirtytalkUpdate', config = 'vim.cmd[[set spelllang=en,programming]]'}
   use {'mbbill/undotree', config = 'vim.cmd[[nnoremap <leader>ut :UndotreeToggle<CR>]]'}
 
 end) end

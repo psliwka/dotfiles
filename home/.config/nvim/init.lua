@@ -128,6 +128,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
   use 'tpope/vim-unimpaired'
   use 'psliwka/termcolors.nvim'
+  use 'tommcdo/vim-lion'
 
   -- Situational awareness enhancements
   use {'lewis6991/gitsigns.nvim', config = function()

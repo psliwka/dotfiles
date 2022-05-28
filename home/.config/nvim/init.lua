@@ -17,6 +17,28 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'psliwka/vim-redact-pass'
   use 'jjo/vim-cue'
 
+  -- Appearance
+  use {'NTBBloodbath/doom-one.nvim', config = function()
+    require("doom-one").setup{
+      cursor_coloring = true,
+      italic_comments = true,
+      terminal_colors = true,
+      plugins_integrations = {
+        bufferline = true,
+        telescope = true,
+      },
+      pumblend = {
+          transparency_amount = 10,
+      },
+    }
+  end}
+  use 'kyazdani42/nvim-web-devicons'
+  -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = false,
+  })
+
   -- LSP integration
   use {'neovim/nvim-lspconfig', requires = { 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim', 'f3fora/cmp-spell' }, config = function()
     local nvim_lsp = require('lspconfig')
@@ -106,28 +128,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
   use 'tpope/vim-unimpaired'
   use 'psliwka/termcolors.nvim'
-
-  -- Appearance
-  use {'NTBBloodbath/doom-one.nvim', config = function()
-    require("doom-one").setup{
-      cursor_coloring = true,
-      italic_comments = true,
-      terminal_colors = true,
-      plugins_integrations = {
-        bufferline = true,
-        telescope = true,
-      },
-      pumblend = {
-          transparency_amount = 10,
-      },
-    }
-  end}
-  use 'kyazdani42/nvim-web-devicons'
-  -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
-  vim.diagnostic.config({
-    virtual_text = false,
-    signs = false,
-  })
 
   -- Situational awareness enhancements
   use {'lewis6991/gitsigns.nvim', config = function()

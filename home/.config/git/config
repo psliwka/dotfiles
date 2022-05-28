@@ -5,6 +5,8 @@
 	signingkey = 0355A06EF2482BD8F5D5656F55CBB335270DBF50
 
 # Better defaults
+[init]
+	defaultBranch = master
 [fetch]
 	prune = true
 [pull]

@@ -1,1 +1,0 @@
-../../../../vendor/fisher/completions/fisher.fish

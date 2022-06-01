@@ -15,6 +15,7 @@ set spelloptions=camel
 set linebreak breakindent breakat=\ 
 if has('nvim')
   tnoremap <Esc> <Esc><C-\><C-n>
+  set laststatus=3
 endif
 
 " Tweak appearance

@@ -18,20 +18,21 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'jjo/vim-cue'
 
   -- Appearance
-  use {'NTBBloodbath/doom-one.nvim', config = function()
-    require("doom-one").setup{
-      cursor_coloring = true,
-      italic_comments = true,
-      terminal_colors = true,
-      plugins_integrations = {
-        bufferline = true,
-        telescope = true,
-      },
-      pumblend = {
-          transparency_amount = 10,
-      },
-    }
-  end}
+  use {
+    'NTBBloodbath/doom-one.nvim',
+    setup = function()
+      vim.g.doom_one_cursor_coloring       = true
+      vim.g.doom_one_terminal_colors       = true
+      vim.g.doom_one_italic_comments       = true
+      vim.g.doom_one_enable_treesitter     = true
+      vim.g.doom_one_pumblend_enable       = true
+      vim.g.doom_one_pumblend_transparency = 10
+      vim.g.doom_one_plugin_telescope      = true
+    end,
+    config = function()
+      vim.cmd("colorscheme doom-one")
+    end,
+  }
   use 'kyazdani42/nvim-web-devicons'
   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
   vim.diagnostic.config({

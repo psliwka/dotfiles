@@ -55,7 +55,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
-        { name = 'buffer' },
+        { name = 'buffer', option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end } },
         { name = 'spell' },
       }),
       formatting = {

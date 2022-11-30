@@ -60,7 +60,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       }),
       formatting = {
         format = lspkind.cmp_format({
-          mode = 'symbol_text',
+          mode = 'symbol',
         })
       }
     })

@@ -1,0 +1,2 @@
+# Env var set via ~/profile.d/50-taskwarrior.sh
+data.location=$TASKWARRIOR_DATA_LOCATION

@@ -185,12 +185,11 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     }
   end}
   use {'lukas-reineke/indent-blankline.nvim', config = function()
-    vim.g.indentLine_char = '▏'
-    vim.g.indent_blankline_show_trailing_blankline_indent = false
-    vim.cmd[[
-      autocmd OptionSet list if &list | execute('IndentBlanklineEnable') | else | execute('IndentBlanklineDisable') | endif
-      autocmd BufAdd * if &list | execute('IndentBlanklineEnable') | else | execute('IndentBlanklineDisable') | endif
-    ]]
+    require("ibl").setup{
+      indent = { char = "▏" },
+      scope = { char = "▎" },
+      whitespace = { remove_blankline_trail = false },
+    }
   end}
   use 'psliwka/vim-smoothie'
   use {'hoob3rt/lualine.nvim', config = function()

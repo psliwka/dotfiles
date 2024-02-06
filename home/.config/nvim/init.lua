@@ -7,7 +7,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'sheerun/vim-polyglot'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
     require'nvim-treesitter.configs'.setup {
-      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua' },
+      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc' },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,  -- Needed to disable spellchecking of keywords, function names, etc.

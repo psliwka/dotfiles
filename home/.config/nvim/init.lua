@@ -187,8 +187,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use {'lukas-reineke/indent-blankline.nvim', config = function()
     require("ibl").setup{
       indent = { char = "▏" },
-      scope = { char = "▎" },
-      whitespace = { remove_blankline_trail = false },
+      scope = { char = "▎", highlight = "IblIndent"},
     }
   end}
   use 'psliwka/vim-smoothie'

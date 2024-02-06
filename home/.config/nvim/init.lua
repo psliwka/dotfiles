@@ -10,7 +10,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc' },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,  -- Needed to disable spellchecking of keywords, function names, etc.
       }
     }
   end}

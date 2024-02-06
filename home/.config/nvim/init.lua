@@ -153,7 +153,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       }
     }
   end}
-  use 'psliwka/termcolors.nvim'
 
   -- Situational awareness enhancements
   use {'lewis6991/gitsigns.nvim', config = function()

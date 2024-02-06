@@ -54,14 +54,10 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     -- buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     -- buf_set_keymap('n', '<leader>lR', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
     vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
     -- Use LspAttach autocommand to only map the following keys
@@ -122,9 +118,14 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   end}
 
   -- Additional features
-  use 'tpope/vim-repeat'
+  use {'echasnovski/mini.nvim', branch = 'stable', config = function()
+    require('mini.ai').setup()
+    require('mini.align').setup()
+    require('mini.bracketed').setup{ comment = { suffix = '' } }
+    require('mini.comment').setup()
+  end}
+
   use 'tpope/vim-fugitive'
-  use 'wellle/targets.vim'
   use 'michaeljsmith/vim-indent-object'
   use {'machakann/vim-sandwich', config = 'vim.cmd[[runtime macros/sandwich/keymap/surround.vim]]'}
   use 'tpope/vim-eunuch'
@@ -152,10 +153,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       }
     }
   end}
-  use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
-  use 'tpope/vim-unimpaired'
   use 'psliwka/termcolors.nvim'
-  use 'tommcdo/vim-lion'
 
   -- Situational awareness enhancements
   use {'lewis6991/gitsigns.nvim', config = function()

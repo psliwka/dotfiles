@@ -30,6 +30,11 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     end,
     config = function()
       vim.cmd("colorscheme doom-one")
+      -- Mute spellchecking suggestions a bit:
+      vim.api.nvim_set_hl(0, "SpellBad", {undercurl=true})
+      vim.api.nvim_set_hl(0, "SpellLocal", {undercurl=true})
+      vim.api.nvim_set_hl(0, "SpellCap", {})
+      vim.api.nvim_set_hl(0, "SpellRare", {})
     end,
   }
   use 'kyazdani42/nvim-web-devicons'

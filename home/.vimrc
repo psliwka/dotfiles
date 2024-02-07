@@ -13,6 +13,7 @@ set spell
 set spellcapcheck=
 set spelloptions=camel
 set linebreak breakindent breakat=\ 
+set scrolloff=5
 if has('nvim')
   tnoremap <Esc> <Esc><C-\><C-n>
   set laststatus=3

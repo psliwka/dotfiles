@@ -134,17 +134,24 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'michaeljsmith/vim-indent-object'
   use {'machakann/vim-sandwich', config = 'vim.cmd[[runtime macros/sandwich/keymap/surround.vim]]'}
   use 'tpope/vim-eunuch'
-  use {'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} }, config = function()
+  use {'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim', 'debugloop/telescope-undo.nvim'} }, config = function()
     require('telescope').setup{
       defaults = {
         layout_strategy = 'vertical',
+        layout_config = {
+          preview_cutoff = 5,
+        },
         winblend = 10,
+      },
+      extensions = {
+        undo = { },
       },
     }
     vim.cmd[[
       nnoremap <leader>fd <cmd>Telescope find_files<cr>
       nnoremap <leader>rg <cmd>Telescope live_grep<cr>
       nnoremap <leader>b <cmd>Telescope buffers<cr>
+      nnoremap <leader>u <cmd>Telescope undo<cr>
     ]]
   end}
   use {'kyazdani42/nvim-tree.lua', config = function()
@@ -227,7 +234,6 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     require('colorizer').setup({'*'}, { names = false; rgb_fn = true; })
   end}
   use {'psliwka/vim-dirtytalk', run = ':DirtytalkUpdate', config = 'vim.cmd[[set spelllang=en,programming]]'}
-  use {'mbbill/undotree', config = 'vim.cmd[[nnoremap <leader>ut :UndotreeToggle<CR>]]'}
 
 end) end
 

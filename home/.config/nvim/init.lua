@@ -7,7 +7,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'sheerun/vim-polyglot'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
     require'nvim-treesitter.configs'.setup {
-      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc' },
+      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc', 'cue' },
       highlight = {
         enable = true,
       }

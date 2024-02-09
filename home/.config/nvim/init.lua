@@ -7,7 +7,7 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
   use 'sheerun/vim-polyglot'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
     require'nvim-treesitter.configs'.setup {
-      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc', 'cue' },
+      ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc', 'cue', 'json', 'yaml' },
       highlight = {
         enable = true,
       }
@@ -35,6 +35,10 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       vim.api.nvim_set_hl(0, "SpellLocal", {undercurl=true})
       vim.api.nvim_set_hl(0, "SpellCap", {})
       vim.api.nvim_set_hl(0, "SpellRare", {})
+      -- Make Treesitter context more prominent
+      vim.api.nvim_set_hl(0, "TreesitterContext", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "Special" })
+      vim.api.nvim_set_hl(0, "TreesitterContextBottom", { undercurl = true, special = '#5b6268' })
     end,
   }
   use 'kyazdani42/nvim-web-devicons'
@@ -234,6 +238,9 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
     require('colorizer').setup({'*'}, { names = false; rgb_fn = true; })
   end}
   use {'psliwka/vim-dirtytalk', run = ':DirtytalkUpdate', config = 'vim.cmd[[set spelllang=en,programming]]'}
+  use {'nvim-treesitter/nvim-treesitter-context', config = function()
+    require'treesitter-context'.setup{mode = 'topline'}
+  end}
 
 end) end
 

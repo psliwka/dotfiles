@@ -1,25 +1,38 @@
-if pcall(require, 'packer') then require('packer').startup(function(use)
+-- Basic settings are kept in a Vim-compatible vimscript file
+vim.cmd('source ~/.vimrc')
 
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({
 
   -- Better filetypes support
-  use 'sheerun/vim-polyglot'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
+  'sheerun/vim-polyglot',
+  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function()
     require'nvim-treesitter.configs'.setup {
       ensure_installed = { 'python', 'go', 'javascript', 'vue', 'lua', 'vimdoc', 'cue', 'json', 'yaml' },
       highlight = {
         enable = true,
       }
     }
-  end}
-  use 'psliwka/vim-redact-pass'
-  use 'jjo/vim-cue'
+  end},
+  'psliwka/vim-redact-pass',
+  'jjo/vim-cue',
 
   -- Appearance
-  use {
+  {
     'NTBBloodbath/doom-one.nvim',
-    setup = function()
+    init = function()
       vim.g.doom_one_cursor_coloring       = true
       vim.g.doom_one_terminal_colors       = true
       vim.g.doom_one_italic_comments       = true
@@ -39,17 +52,17 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       vim.api.nvim_set_hl(0, "TreesitterContext", { link = "Normal" })
       vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "Special" })
       vim.api.nvim_set_hl(0, "TreesitterContextBottom", { undercurl = true, special = '#5b6268' })
+      -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
+      vim.diagnostic.config({
+        virtual_text = false,
+        signs = false,
+      })
     end,
-  }
-  use 'kyazdani42/nvim-web-devicons'
-  -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
-  vim.diagnostic.config({
-    virtual_text = false,
-    signs = false,
-  })
+  },
+  'kyazdani42/nvim-web-devicons',
 
   -- LSP integration
-  use {'neovim/nvim-lspconfig', config = function()
+  {'neovim/nvim-lspconfig', config = function()
     local lspconfig = require('lspconfig')
 
     lspconfig.pyright.setup {}
@@ -99,10 +112,10 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
         end, opts)
       end,
     })
-  end}
+  end},
 
   -- Autocompletion
-  use {'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim', 'f3fora/cmp-spell' }, config = function()
+  {'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind.nvim', 'f3fora/cmp-spell' }, config = function()
     local cmp = require('cmp')
     local lspkind = require('lspkind')
       cmp.setup({
@@ -124,21 +137,23 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
         })
       }
     })
-  end}
+  end},
 
   -- Additional features
-  use {'echasnovski/mini.nvim', branch = 'stable', config = function()
+  {'echasnovski/mini.nvim', branch = 'stable', config = function()
     require('mini.ai').setup()
     require('mini.align').setup()
     require('mini.bracketed').setup{ comment = { suffix = '' } }
     require('mini.comment').setup()
-  end}
+  end},
 
-  use 'tpope/vim-fugitive'
-  use 'michaeljsmith/vim-indent-object'
-  use {'machakann/vim-sandwich', config = 'vim.cmd[[runtime macros/sandwich/keymap/surround.vim]]'}
-  use 'tpope/vim-eunuch'
-  use {'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim', 'debugloop/telescope-undo.nvim'} }, config = function()
+  'tpope/vim-fugitive',
+  'michaeljsmith/vim-indent-object',
+  {'machakann/vim-sandwich', config = function()
+    vim.cmd[[runtime macros/sandwich/keymap/surround.vim]]
+  end},
+  'tpope/vim-eunuch',
+  {'nvim-telescope/telescope.nvim', dependencies = { {'nvim-lua/plenary.nvim', 'debugloop/telescope-undo.nvim'} }, config = function()
     require('telescope').setup{
       defaults = {
         layout_strategy = 'vertical',
@@ -157,21 +172,21 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
       nnoremap <leader>b <cmd>Telescope buffers<cr>
       nnoremap <leader>u <cmd>Telescope undo<cr>
     ]]
-  end}
-  use {'kyazdani42/nvim-tree.lua', config = function()
+  end},
+  {'kyazdani42/nvim-tree.lua', config = function()
     require'nvim-tree'.setup{}
     vim.cmd[[nnoremap <leader>ft :NvimTreeToggle<CR>]]
-  end}
-  use {'akinsho/bufferline.nvim', config = function()
+  end},
+  {'akinsho/bufferline.nvim', config = function()
     require("bufferline").setup{
       options = {
         separator_style = "slant",
       }
     }
-  end}
+  end},
 
   -- Situational awareness enhancements
-  use {'lewis6991/gitsigns.nvim', config = function()
+  {'lewis6991/gitsigns.nvim', config = function()
       require('gitsigns').setup{
         preview_config = {
           border = 'rounded',
@@ -222,27 +237,28 @@ if pcall(require, 'packer') then require('packer').startup(function(use)
           map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
     }
-  end}
-  use {'lukas-reineke/indent-blankline.nvim', config = function()
+  end},
+  {'lukas-reineke/indent-blankline.nvim', config = function()
     require("ibl").setup{
       indent = { char = "▏" },
       scope = { char = "▎", highlight = "IblIndent"},
     }
-  end}
-  use 'psliwka/vim-smoothie'
-  use {'hoob3rt/lualine.nvim', config = function()
+  end},
+  'psliwka/vim-smoothie',
+  {'hoob3rt/lualine.nvim', config = function()
     require('lualine').setup{}
-  end}
-  use {'unblevable/quick-scope', config = [[ vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'} ]]}
-  use {'norcalli/nvim-colorizer.lua', config = function()
+  end},
+  {'unblevable/quick-scope', init = function()
+    vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+  end},
+  {'norcalli/nvim-colorizer.lua', config = function()
     require('colorizer').setup({'*'}, { names = false; rgb_fn = true; })
-  end}
-  use {'psliwka/vim-dirtytalk', run = ':DirtytalkUpdate', config = 'vim.cmd[[set spelllang=en,programming]]'}
-  use {'nvim-treesitter/nvim-treesitter-context', config = function()
+  end},
+  {'psliwka/vim-dirtytalk', build = ':DirtytalkUpdate', config = function()
+    vim.cmd[[set spelllang=en,programming]]
+  end},
+  {'nvim-treesitter/nvim-treesitter-context', config = function()
     require'treesitter-context'.setup{mode = 'topline'}
-  end}
+  end},
 
-end) end
-
--- Basic settings are kept in a Vim-compatible vimscript file
-vim.cmd('source ~/.vimrc')
+})

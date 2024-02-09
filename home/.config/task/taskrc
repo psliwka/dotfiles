@@ -1,2 +1,5 @@
 # Env var set via ~/profile.d/50-taskwarrior.sh
 data.location=$TASKWARRIOR_DATA_LOCATION
+
+# Created automatically by `task news`
+news.version=2.6.0

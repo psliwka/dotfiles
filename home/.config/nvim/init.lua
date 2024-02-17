@@ -57,10 +57,14 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "Special" })
 			vim.api.nvim_set_hl(0, "TreesitterContextBottom", { undercurl = true, special = "#5b6268" })
 			-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
-			vim.diagnostic.config({
-				virtual_text = false,
-				signs = false,
-			})
+			for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+				vim.fn.sign_define("DiagnosticSign" .. diag, {
+					text = "",
+					texthl = "DiagnosticSign" .. diag,
+					linehl = "",
+					numhl = "DiagnosticSign" .. diag,
+				})
+			end
 		end,
 	},
 	"nvim-tree/nvim-web-devicons",

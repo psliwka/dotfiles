@@ -1,3 +1,4 @@
 # A global .gitignore, as described on http://git-scm.com/docs/gitignore#_description
 .*.swp
 .DS_Store
+pyrightconfig.json

@@ -35,6 +35,12 @@
 [alias]
 	retry-commit = !git commit --edit --file="$(git rev-parse --git-path COMMIT_EDITMSG)"
 
+# Shell prompt config, respected by fish_git_prompt as well
+[bash]
+	showInformativeStatus = true
+	showDirtyState = true
+	showUntrackedFiles = true
+
 # Optional workplace email override
 [include]
 	path = work-config

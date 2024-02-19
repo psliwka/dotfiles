@@ -205,6 +205,7 @@ require("lazy").setup({
       nnoremap <leader>rg <cmd>Telescope live_grep<cr>
       nnoremap <leader>b <cmd>Telescope buffers<cr>
       nnoremap <leader>u <cmd>Telescope undo<cr>
+      nnoremap z= <cmd>Telescope spell_suggest theme=get_cursor<cr>
     ]])
 		end,
 	},

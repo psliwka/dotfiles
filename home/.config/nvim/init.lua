@@ -134,7 +134,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 			"onsails/lspkind.nvim",
-			"f3fora/cmp-spell",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -157,7 +156,6 @@ require("lazy").setup({
 							end,
 						},
 					},
-					{ name = "spell" },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({

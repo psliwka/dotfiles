@@ -50,8 +50,8 @@ require("lazy").setup({
 			-- Mute spellchecking suggestions a bit:
 			vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
 			vim.api.nvim_set_hl(0, "SpellLocal", { undercurl = true })
-			vim.api.nvim_set_hl(0, "SpellCap", {})
-			vim.api.nvim_set_hl(0, "SpellRare", {})
+			vim.api.nvim_set_hl(0, "SpellCap", { undercurl = true })
+			vim.api.nvim_set_hl(0, "SpellRare", { undercurl = true })
 			-- Make Treesitter context more prominent
 			vim.api.nvim_set_hl(0, "TreesitterContext", { link = "Normal" })
 			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "Special" })

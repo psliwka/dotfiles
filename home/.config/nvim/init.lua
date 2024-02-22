@@ -323,9 +323,15 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
+		"NvChad/nvim-colorizer.lua",
 		config = function()
-			require("colorizer").setup({ "*" }, { names = false, rgb_fn = true })
+			require("colorizer").setup({
+				filetypes = {
+					"*",
+					css = { rgb_fn = true },
+				},
+				user_default_options = { names = false },
+			})
 		end,
 	},
 	{

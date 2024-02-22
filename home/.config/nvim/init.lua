@@ -128,6 +128,7 @@ require("lazy").setup({
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 			"onsails/lspkind.nvim",
@@ -153,6 +154,7 @@ require("lazy").setup({
 							end,
 						},
 					},
+					{ name = "path" },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({

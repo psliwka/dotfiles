@@ -181,6 +181,9 @@ require("lazy").setup({
 	"michaeljsmith/vim-indent-object",
 	{
 		"machakann/vim-sandwich",
+		init = function()
+			vim.cmd([[let g:sandwich_no_default_key_mappings = 1]])
+		end,
 		config = function()
 			vim.cmd([[runtime macros/sandwich/keymap/surround.vim]])
 		end,

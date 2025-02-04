@@ -1,4 +1,5 @@
 # A global .gitignore, as described on http://git-scm.com/docs/gitignore#_description
 .*.swp
+.*.un~
 .DS_Store
 pyrightconfig.json

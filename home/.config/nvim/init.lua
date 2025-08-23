@@ -309,7 +309,10 @@ require("lazy").setup({
 			})
 		end,
 	},
-	"psliwka/vim-smoothie",
+	{
+		"psliwka/vim-smoothie",
+		enabled = not vim.g.neovide,
+	},
 	{
 		"hoob3rt/lualine.nvim",
 		config = function()

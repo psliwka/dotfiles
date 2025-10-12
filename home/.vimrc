@@ -31,6 +31,6 @@ set noshowmode
 set belloff=esc
 set shortmess+=I
 if has('nvim')
-  autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no nospell
+  autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no nospell | startinsert
   autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=1000/3, on_visual=true}
 endif

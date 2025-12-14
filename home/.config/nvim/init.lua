@@ -73,10 +73,8 @@ require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
-
-			lspconfig.pyright.setup({})
-			lspconfig.gopls.setup({})
+			vim.lsp.enable("pyright")
+			vim.lsp.enable("gopls")
 
 			-- Old mappings for reference: TODO: go through them and re-integrate if needed
 			-- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)

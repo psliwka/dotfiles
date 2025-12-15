@@ -17,7 +17,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
 	-- Better filetypes support
-	"sheerun/vim-polyglot",
+	"jjo/vim-cue", -- BB for some reason this has to be defined before vim-polyglot, even though the polyglot's cue support is disabled
+	{
+		"sheerun/vim-polyglot",
+		init = function()
+			vim.cmd([[ let g:polyglot_disabled = ['cue'] ]])
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -31,7 +37,6 @@ require("lazy").setup({
 		end,
 	},
 	"psliwka/vim-redact-pass",
-	"jjo/vim-cue",
 
 	-- Appearance
 	{
@@ -75,6 +80,7 @@ require("lazy").setup({
 		config = function()
 			vim.lsp.enable("pyright")
 			vim.lsp.enable("gopls")
+			vim.lsp.enable("cue")
 
 			-- Old mappings for reference: TODO: go through them and re-integrate if needed
 			-- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
